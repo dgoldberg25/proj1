@@ -1,0 +1,2 @@
+q0:There is no controller file for Pokemon.
+q1:We populated our database with trainers and pokemon by running rake db:seed and with the help of the code in seeds.rb. Our HomeController then selects a pokemon at random and assigns it to the @pokemon variable. The index.html.erb file shows it in our view.
