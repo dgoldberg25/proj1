@@ -16,12 +16,23 @@ def capture
 end
 
 def damage
-  pokemon = Pokemon.find(params[:id])
-  pokemon.health -= 10
-  pokemon.save
-  if pokemon.health <= 0
-  	pokemon.destroy
+  @pokemon = Pokemon.find(params[:id])
+  @pokemon.health -= 10
+  @pokemon.save
+  if @pokemon.health <= 0
+  	@pokemon.destroy
   end
-  redirect_to '/trainers/:id(.:format)' #trainer's page
+  redirect_to trainer_path(@pokemon.trainer)
 end
+
+def new
+	#get name from field in views/pokemons/new.html.erb
+  p = Pokemon.create level: 1, trainer_id: current_trainer.id, health: 100, name: name
+  if p.valid?
+    redirect_to trainer_path(@pokemon.trainer)
+  else
+    redirect_to new_path(current_trainer)
+  end
+end
+
 end

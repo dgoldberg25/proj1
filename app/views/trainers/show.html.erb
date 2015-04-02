@@ -1,4 +1,5 @@
 <h3>Trainer</h3>
+<%= button_to "Create a Pokemon!", new_path(id: @pokemon), :class => "button medium", :method => :patch %>
 <p>Name: <%= @trainer.name if @trainer.name %></p>
 <p>Email: <%= @trainer.email if @trainer.email %></p>
 <%= @trainer.pokemon.each do |pokemon| %>

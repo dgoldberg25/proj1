@@ -4,5 +4,7 @@ Rails.application.routes.draw do
   resources :trainers
   resources :pokemons, as: :capture, path:"pokemon/capture"
   put "/pokemon/capture(.:format)", to: "pokemons#capture"
-  put "/trainers/:id(.:format)", to: "pokemons#damage", as: :damage, path: "pokemon/damage"
+  #resources :pokemons, as: :capture, path:"pokemon/capture"
+  patch "/pokemon/:id/damage", to: "pokemons#damage", as: :damage
+  post "pokemon/new", to: "pokemons#new", as: :new
 end
