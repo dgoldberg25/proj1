@@ -26,12 +26,16 @@ def damage
 end
 
 def new
-	#get name from field in views/pokemons/new.html.erb
-  p = Pokemon.create level: 1, trainer_id: current_trainer.id, health: 100, name: name
-  if p.valid?
-    redirect_to trainer_path(@pokemon.trainer)
+  #get name from field in views/pokemons/new.html.erb
+end
+
+def create
+  @p = Pokemon.create level: 1, trainer_id: current_trainer.id, health: 100, name: params["pokemon"]["name"]
+  if @p.save
+    redirect_to trainer_path(@p.trainer)
   else
-    redirect_to new_path(current_trainer)
+    flash[:error] = @p.errors.full_messages.to_sentence
+    redirect_to trainer_path(current_trainer)
   end
 end
 
